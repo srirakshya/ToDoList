@@ -42,10 +42,10 @@ public class SaveUser extends HttpServlet {
 				resp.sendRedirect("signup.jsp");
 			}
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}	
 		
