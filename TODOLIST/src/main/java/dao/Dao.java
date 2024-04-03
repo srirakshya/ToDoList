@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.rowset.serial.SerialBlob;
 
@@ -76,7 +78,20 @@ public class Dao {
 		
 	}
 	
-	
+	public List<Task> getalltasksByUserId(int userid) throws ClassNotFoundException, SQLException{
+		
+		Connection con = getConnection();
+		PreparedStatement pst = con.prepareStatement("select * from task where userid = ?");
+		pst.setInt(1, userid);
+		ResultSet rs = pst.executeQuery();  
+		List<Task> tasks = new ArrayList<Task>();
+		while(rs.next())
+		{
+			Task task = new Task(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7)); 
+				tasks.add(task); 
+		}
+		return tasks;
+	}
 	
 	
 	

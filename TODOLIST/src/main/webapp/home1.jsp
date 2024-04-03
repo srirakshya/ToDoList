@@ -1,3 +1,5 @@
+<%@page import="dto.Task"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Base64"%>
 <%@page import="dto.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -7,6 +9,13 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<style>
+	tr.td,th{
+		border : border-collapse;
+	
+	}
+
+</style>
 </head>
 <body>
 	
@@ -21,6 +30,38 @@
 	<img alt="" src="data:image/jpeg;base64,<%= image %>" width="300" height="300"><br>
 	
 	<a href="addtask.jsp">Add Task</a>
+	
+	
+	<h3>Tasks</h3>
+	<% List<Task> tasks = (List)request.getAttribute("tasks"); %>
+	
+	<table border="5px">
+	<tr>
+	<th>id</th> 
+	<th>title</th>
+	<th>description</th>
+	<th>priority</th>
+	<th>duedate</th>
+	<th>status</th>
+	</tr>
+	
+	<% for(Task task :tasks){%>
+	<tr border="5px">
+	<td border="5px"><%= task.getTaskid() %></td>
+	<td border="5px"><%= task.getTasktitle() %></td>
+	<td border="5px"><%= task.getTaskdescription() %></td>
+	<td border="5px"><%= task.getTaskpriority() %></td>
+	<td border="5px"><%= task.getTaskduedate() %></td>
+	<td border="5px"><%= task.getTaskstatus()%></td>
+	</tr>
+	
+	<%} %>
+	
+	
+	<tr>
+	
+	
+	</table>
 	
 
 	
