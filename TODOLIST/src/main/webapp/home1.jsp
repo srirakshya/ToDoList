@@ -10,7 +10,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <style>
-	tr.td,th{
+	tr,td,th{
 		border : border-collapse;
 	}
 	#home{
@@ -85,14 +85,17 @@
 	
 	<table>
 	<tr>
-	<th>id</th> 
-	<th>title</th>
-	<th>description</th>
-	<th>priority</th>
-	<th>duedate</th>
-	<th>status</th>
+	<th>Id</th> 
+	<th>Title</th>
+	<th>Description</th>
+	<th>Priority</th>
+	<th>DueDate</th>
+	<th>Status</th>
+	<th>Delete</th>
+	<th>Edit</th>
 	</tr>
 	
+	<%int num=1; %>
 	<% for(Task task :tasks){%>
 	<tr>
 	<td><%= task.getTaskid() %></td>
@@ -101,17 +104,15 @@
 	<td><%= task.getTaskpriority() %></td>
 	<td><%= task.getTaskduedate() %></td>
 	<td><%= task.getTaskstatus()%></td>
+	<td><a href="delete?id=<%= task.getTaskid() %>">delete</a></td>
+	<td><a href="edit">Edit</a></td>
 	</tr>
 	
+	<%num +=1; %>
 	<%} %>
-	
-	
-	<tr>
-	
-	
 	</table>
-	
 	</div>
+	
 	
 
 	
