@@ -32,12 +32,14 @@ public class Login extends HttpServlet {
 					//create session and set the data
 					//get all the tasks related to user id from user
 					
-					List<Task> tasks = dao.getalltasksByUserId(u.getUserid());
-					req.setAttribute("tasks", tasks);
+//					List<Task> tasks = dao.getalltasksByUserId(u.getUserid());
+//					req.setAttribute("tasks", tasks);
 
 					
 					HttpSession session=req.getSession();
 					session.setAttribute("user", u);
+					
+					
 					req.getRequestDispatcher("home1.jsp").include(req, resp);
 				} else {
 					// password wrong

@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,44 +16,43 @@ import dao.Dao;
 import dto.Task;
 import dto.User;
 
-@WebServlet("/addtask")
-public class AddTask extends HttpServlet {
+@WebServlet("/updatetask")
+public class UpdateTask extends HttpServlet {
+	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-
+		int taskid = Integer.parseInt(req.getParameter("taskid"));
 		String tasktitle = req.getParameter("tasktitle");
 		String taskdescription = req.getParameter("taskdescription");
 		String taskpriority = req.getParameter("taskpriority");
 		String taskduedate = req.getParameter("taskduedate");
+		String taskstatus = req.getParameter("taskstatus");
 		
-		User user = (User)req.getSession().getAttribute("user");
-		int userid = user.getUserid();
-		
-		
+		HttpSession session = req.getSession();
+		User user = (User)session.getAttribute("user");
 		
 		Dao dao = new Dao();
 		
 		try {
+			Task dbtask = dao.findTaskById(taskid);
 			
-			Task task = new Task(dao.getTaskId(), tasktitle, taskdescription, taskpriority, taskduedate, "pending", userid);
-			int res = dao.createtask(task);
-			if(res>0) {
+			if(taskpriority == null) {
+				taskpriority = dbtask.getTaskpriority();
 				
-				resp.sendRedirect("home1.jsp");
-				
-//				HttpSession session = req.getSession();
-//				User u = (User)session.getAttribute("user");
-//				req.setAttribute("tasks", dao.getalltasksByUserId(u.getUserid()));
-//				
-//				RequestDispatcher dispatcher = req.getRequestDispatcher("home1.jsp");
-//				dispatcher.include(req, resp);
-//				
-////				resp.getWriter().println("Task has been created");
-			}else {
-				resp.getWriter().println("Task failed");
 			}
+			Task task = new Task(taskid, tasktitle, taskdescription, taskpriority, taskduedate, taskstatus, user.getUserid());
+			System.out.println("------>" + task + "<------");
+			
+			dao.updateTask(task);
+			
+//			List<Task> tasks = dao.getalltasksByUserId(user.getUserid());
+//			req.setAttribute("tasks", tasks);
+//			req.getRequestDispatcher("home1.jsp").include(req, resp);
+			
+			resp.sendRedirect("home1.jsp");
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,7 +60,6 @@ public class AddTask extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		
 	}
 

@@ -5,13 +5,52 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>EDIT TASK</title>
+<style>
+
+	
+	html{
+		background-image:url("https://cdn.pixabay.com/photo/2015/01/08/18/25/desk-593327_1280.jpg");
+		background-repeat:no-repeat;
+		background-size:cover;
+	}
+	legend{
+		/* margin-left:40%; */
+		color:blue;
+	}
+	#edit{
+		
+		height:600px;
+		width:400px;
+		border-radius:20px;
+		margin-left:35%;
+		padding:20px;
+		line-height:25px;
+		background-color:white;
+		box-shadow:0 0 10px 10px;
+	}
+	input[type="submit"]{
+		margin-left:30%;
+		border-radius:20px;
+		padding:15px;
+		background-color:blue;
+	}
+	input[type="submit"]:hover{
+	
+	color:yellow;
+	}
+	
+
+</style>
 </head>
 <body>
 
 
-<%Task task = (Task)request.getAttribute("task"); %>
+<fieldset id="edit">
+	<legend><h2>Edit Task</h2></legend>
 
+
+<%Task task = (Task)request.getAttribute("task"); %>
 
 <form action="updatetask" method="post">
 
@@ -36,13 +75,17 @@ Task priority:<br>
 Due Date:<input type="date" name="taskduedate" value="<%= task.getTaskduedate() %>"><br><br>
 Status:<input type="text" name="taskstatus" value="<%= task.getTaskstatus() %>"><br><br>
 
-<input type="submit">
 
 
-	
+	<input type="submit">
 
-	
 
 </form>
+	
+
+</fieldset>
+
+
+
 </body>
 </html>

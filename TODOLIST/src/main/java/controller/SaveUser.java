@@ -21,7 +21,7 @@ public class SaveUser extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		int id = Integer.parseInt(req.getParameter("id"));
+		
 		String name = req.getParameter("name");
 		String email = req.getParameter("email");
 		long contact = Long.parseLong(req.getParameter("contact"));
@@ -30,24 +30,26 @@ public class SaveUser extends HttpServlet {
 		Part imagepart = req.getPart("image");
 		byte[] imagebytes = imagepart.getInputStream().readAllBytes();
 		
-		User user = new User(id, name, email, contact, password, imagebytes); 
 		Dao dao = new Dao();
+		
+		User user;
+		
 		try {
+			user = new User(dao.getUserId(), name, email, contact, password, imagebytes);
 			int res = dao.saveUser(user);
 			if(res>0) {
-//				resp.getWriter().print("login successful");
 				resp.sendRedirect("login.jsp");
 			}
 			else {
 				resp.sendRedirect("signup.jsp");
 			}
 		} catch (ClassNotFoundException e) {
-			
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SQLException e) {
-			
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 		
 	}
 	

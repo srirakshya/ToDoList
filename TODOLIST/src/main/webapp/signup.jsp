@@ -4,20 +4,51 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>SIGNUP</title>
 <style>
-	form{
-		border:2px solid black;
-		height:280px;
-		width:250px;
-		padding:30px;
-		margin-left:38%;
-		background-color:violet;
-		margin-top:9%;
+
+	
+	input[type="submit"]{
+	
+		margin-left:25%;
+		border-radius:20px;
+		background-color:blue;
+		padding:15px;
+	}
+	input[type="submit"]:hover{
+	color:yellow;
+	
+	}
+	
+	#dec{
+	
+		height:500px;
+		width:400px;
+		border-radius:20px;
+		margin-left:35%;
+		padding:40px;
+		line-height:30px;
+		background-color:white; 
+		box-shadow:0 0 10px 10px;
+	}
+	legend{
+	
+		color:blue;
+	
+	}
+	html{
+		background-image:url("https://cdn.pixabay.com/photo/2016/03/26/13/09/cup-of-coffee-1280537_640.jpg");
+		background-size:cover;
+		background-repeat:no-repeat;
+	
 	}
 </style>
 </head>
 <body>
+	<fieldset id="dec" >
+	
+	<legend><h2>User Details</h2></legend>
+	
 	<form action="saveuser" method="post" enctype="multipart/form-data"> 
 	id:<input type="text" name="id"><br><br>
 	name:<input type="text" name="name"><br><br>
@@ -26,8 +57,13 @@
 	password:<input type="text" name="password"><br><br>
 	image:<input type="file" name="image "><br><br>	
 	
-	<input type="submit">
+	<div id="class">
+		<input type="submit">
+	
+	</div>
 	
 	</form>
+	
+	</fieldset>
 </body>
 </html>

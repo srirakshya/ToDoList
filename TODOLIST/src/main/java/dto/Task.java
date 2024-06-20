@@ -69,5 +69,13 @@ public class Task {
 	public void setUserid(int userid) {
 		this.userid = userid;
 	}
+	@Override
+	public String toString() {
+		return "Task [taskid=" + taskid + ", tasktitle=" + tasktitle + ", taskdescription=" + taskdescription
+				+ ", taskpriority=" + taskpriority + ", taskduedate=" + taskduedate + ", taskstatus=" + taskstatus
+				+ ", userid=" + userid + "]";
+	}
+	
+	
 
 }
